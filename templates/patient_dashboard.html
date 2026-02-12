@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block title %}Patient Dashboard{% endblock %}
+{% block content %}
+<h1>Welcome, {{ patient.name or patient.username }}</h1>
+
+<p><a href="{{ url_for('patient_appointments_new') }}">Book new appointment</a></p>
+
+<h2>Your Appointments</h2>
+<ul>
+  {% for a in appointments %}
+    <li>{{ a.datetime }} with Dr. {{ a.doctor.name }} ({{ a.status }})</li>
+  {% else %}
+    <li>No appointments yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

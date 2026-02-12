@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h1>Admin Dashboard</h1>
+<p>Total patients: {{ total_patients }}</p>
+<p>Total doctors: {{ total_doctors }}</p>
+<p>Total appointments: {{ total_appointments }}</p>
+
+<p><a href="{{ url_for('admin_doctors') }}">Manage Doctors</a></p>
+{% endblock %}

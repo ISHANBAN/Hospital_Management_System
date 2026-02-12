@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}Doctor Dashboard{% endblock %}
+
+{% block content %}
+<h1>Welcome Dr. {{ doctor.name or doctor.username }}</h1>
+
+<h2>Your Appointments</h2>
+<ul>
+  {% for a in appointments %}
+    <li>
+      {{ a.datetime }} – Patient: {{ a.patient.name or a.patient.username }} (Status: {{ a.status }})
+      {% if a.treatment %}
+        – Diagnosis: {{ a.treatment.diagnosis }}
+      {% endif %}
+      –
+      <a href="{{ url_for('doctor_appointment_detail', appointment_id=a.id) }}">
+        View / Add Treatment
+      </a>
+    </li>
+  {% else %}
+    <li>No appointments assigned.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

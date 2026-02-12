@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Hospital Management System{% endblock %}</title>
+</head>
+<body>
+<nav>
+    <a href="{{ url_for('index') }}">Home</a>
+    {% if session.get('role') == 'doctor' %}
+        <a href="{{ url_for('doctor_dashboard') }}">Doctor Dashboard</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% elif session.get('user_id') %}
+        {% if session.get('is_admin') %}
+            <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+        {% else %}
+            <a href="{{ url_for('patient_dashboard') }}">Patient Dashboard</a>
+        {% endif %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Patient/Admin Login</a>
+        <a href="{{ url_for('doctor_login') }}">Doctor Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+</nav>
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+      {% for m in messages %}
+        <li>{{ m }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+</body>
+</html>

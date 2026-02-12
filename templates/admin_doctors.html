@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block title %}Manage Doctors{% endblock %}
+{% block content %}
+<h1>Doctors</h1>
+<p><a href="{{ url_for('admin_doctors_new') }}">Add new doctor</a></p>
+<ul>
+  {% for d in doctors %}
+    <li>{{ d.name }} ({{ d.username }}) - {{ d.department.name if d.department else 'No department' }}</li>
+  {% else %}
+    <li>No doctors yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

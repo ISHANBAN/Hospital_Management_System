@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block title %}New Doctor{% endblock %}
+{% block content %}
+<h1>Add New Doctor</h1>
+<form method="POST">
+  <label>Name:</label>
+  <input type="text" name="name"><br><br>
+  <label>Username:</label>
+  <input type="text" name="username"><br><br>
+  <label>Password:</label>
+  <input type="password" name="password"><br><br>
+
+  <label>Department:</label>
+  <select name="department_id">
+    <option value="">--None--</option>
+    {% for dept in departments %}
+      <option value="{{ dept.id }}">{{ dept.name }}</option>
+    {% endfor %}
+  </select><br><br>
+
+  <button type="submit">Create</button>
+</form>
+{% endblock %}
+
